@@ -1,3 +1,4 @@
+# Fill in $target with the drive letter you hope to to scan
 $target = 'C'
 # Runs repair-volume and scans for issues on the drive $target
 $result = Repair-Volume -DriveLetter $target -Scan
