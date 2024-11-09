@@ -16,13 +16,13 @@ $reservedDirs = @('toPreserve0', 'toPreserve1')
 $toDelete = (Get-ChildItem $path -Directory).Name
 
 Write-Host 'Directories Found:'
-ForEach ($directory in $toDelete) {
+foreach ($directory in $toDelete) {
 	if (!($reservedDirs -contains $directory)) {
 		Write-Host $directory
 	}
 }
 
-$confirm = 'a'
+$confirm = Read-Host -Prompt 'Confirm? (Y\N)'
 while (($confirm -ne 'Y') -and ($confirm -ne 'N')) {
 	$confirm = Read-Host -Prompt 'Confirm? (Y\N)'
 }	
@@ -30,7 +30,7 @@ while (($confirm -ne 'Y') -and ($confirm -ne 'N')) {
 if ($confirm -eq 'N') {
 	Write-Host 'Cancelling'
 } else {
-	ForEach ($directory in $toDelete) {
+	foreach ($directory in $toDelete) {
 		if (!($reservedDirs -contains $directory)) {
 			Write-Host "Deleting" $directory 
 			Remove-Item -Path ($path + $directory) -Recurse -Force
